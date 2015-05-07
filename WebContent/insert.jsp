@@ -3,19 +3,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("utf-8");
 	//이메일을 등록
 	String fn = request.getParameter("fn");	
 	String ln = request.getParameter("ln");	
-	String address = request.getParameter("address");
+	String email = request.getParameter("email");
 	
 	EmailVO vo = new EmailVO();
 	vo.setFirstName(fn);
 	vo.setLastName(ln);
-	vo.setEmail(address);
+	vo.setEmail(email);
 	
 	EmailDAO dao = new EmailDAO();
 	dao.insert(vo);
 	
-	response.sendRedirect("index.jsp");	
+	response.sendRedirect("email");	
 
 %>

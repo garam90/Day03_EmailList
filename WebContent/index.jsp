@@ -1,4 +1,12 @@
+<%@page import="com.sds.icto.emaillist.vo.EmailVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sds.icto.emaillist.dao.EmailDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	EmailDAO dao = new EmailDAO();
+	ArrayList<EmailVO> list = dao.selectList();
+	
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,21 +17,28 @@
 	<p>입력한 정보 내역입니다.</p>
 	<!-- 메일정보 리스트 -->
 	<%-- list에서 하나씩 빼서 테이블를 채운다--%>
+<%
+	for(int i = 0; i < list.size(); i++){
+		
+%>
 	<table border="1" cellpadding="5" cellspacing="2">
 		<tr>
 			<td align=right>First name: </td>
-			<td></td>
+			<td><%= list.get(i).getFirstName() %></td>
 		</tr>
 		<tr>
 			<td align=right width="110">Last name: </td>
-			<td width="110"></td>
+			<td width="110"><%= list.get(i).getLastName() %></td>
 		</tr>
 		<tr>
 			<td align=right>Email address: </td>
-			<td></td>
+			<td><%= list.get(i).getEmail() %></td>
 		</tr>
 	</table>
 	<br>
+<%
+	}
+%>
 	<p>
 		<a href="form_emaillist.jsp">추가메일 등록</a>
 	</p>
